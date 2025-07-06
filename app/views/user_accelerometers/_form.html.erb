@@ -1,0 +1,32 @@
+<%= form_with(model: user_accelerometer) do |form| %>
+  <% if user_accelerometer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user_accelerometer.errors.count, "error") %> prohibited this user_accelerometer from being saved:</h2>
+
+      <ul>
+        <% user_accelerometer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :x, style: "display: block" %>
+    <%= form.text_field :x %>
+  </div>
+
+  <div>
+    <%= form.label :y, style: "display: block" %>
+    <%= form.text_field :y %>
+  </div>
+
+  <div>
+    <%= form.label :z, style: "display: block" %>
+    <%= form.text_field :z %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

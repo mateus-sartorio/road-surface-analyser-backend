@@ -1,0 +1,12 @@
+<% content_for :title, "Editing user accelerometer" %>
+
+<h1>Editing user accelerometer</h1>
+
+<%= render "form", user_accelerometer: @user_accelerometer %>
+
+<br>
+
+<div>
+  <%= link_to "Show this user accelerometer", @user_accelerometer %> |
+  <%= link_to "Back to user accelerometers", user_accelerometers_path %>
+</div>

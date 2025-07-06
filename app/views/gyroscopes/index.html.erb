@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Gyroscopes" %>
+
+<h1>Gyroscopes</h1>
+
+<div id="gyroscopes">
+  <% @gyroscopes.each do |gyroscope| %>
+    <%= render gyroscope %>
+    <p>
+      <%= link_to "Show this gyroscope", gyroscope %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New gyroscope", new_gyroscope_path %>

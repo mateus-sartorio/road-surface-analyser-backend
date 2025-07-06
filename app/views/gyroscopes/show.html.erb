@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @gyroscope %>
+
+<div>
+  <%= link_to "Edit this gyroscope", edit_gyroscope_path(@gyroscope) %> |
+  <%= link_to "Back to gyroscopes", gyroscopes_path %>
+
+  <%= button_to "Destroy this gyroscope", @gyroscope, method: :delete %>
+</div>

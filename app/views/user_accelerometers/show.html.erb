@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user_accelerometer %>
+
+<div>
+  <%= link_to "Edit this user accelerometer", edit_user_accelerometer_path(@user_accelerometer) %> |
+  <%= link_to "Back to user accelerometers", user_accelerometers_path %>
+
+  <%= button_to "Destroy this user accelerometer", @user_accelerometer, method: :delete %>
+</div>

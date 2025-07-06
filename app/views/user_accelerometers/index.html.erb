@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "User accelerometers" %>
+
+<h1>User accelerometers</h1>
+
+<div id="user_accelerometers">
+  <% @user_accelerometers.each do |user_accelerometer| %>
+    <%= render user_accelerometer %>
+    <p>
+      <%= link_to "Show this user accelerometer", user_accelerometer %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user accelerometer", new_user_accelerometer_path %>

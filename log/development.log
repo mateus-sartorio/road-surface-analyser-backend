@@ -1,0 +1,131 @@
+Started GET "/" for 127.0.0.1 at 2025-07-06 13:45:59 -0300
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Backend'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 46ms (Views: 9.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Backend'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-06 18:08:05.096608', '2025-07-06 18:08:05.096611') RETURNING "key" /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Migrating to CreateAccelerometers (20250706174457)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "accelerometers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "x" float, "y" float, "z" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706174457') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateGyroscopes (20250706174516)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "gyroscopes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "x" float, "y" float, "z" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706174516') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateUserAccelerometers (20250706174527)
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "user_accelerometers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "x" float, "y" float, "z" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706174527') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateLocations (20250706174813)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "locations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "latitude" float, "longitude" float, "altitude" float, "accuracy" float, "bearing" float, "speed" float, "timestamp" datetime(6), "speedAccuracy" float, "bearingAccuracyDegrees" float, "verticalAccuracyMeters" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706174813') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateRecords (20250706175032)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "timestamp_begin" datetime(6), "timestamp_end" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706175032') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateTravels (20250706175050)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "travels" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "timestamp_begin" datetime(6), "timestamp_end" datetime(6)) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706175050') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateDevices (20250706175136)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "devices" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "model" varchar, "uuid" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250706175136') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mDevice Create (4.4ms)[0m  [1m[32mINSERT INTO "devices" ("model", "uuid", "created_at", "updated_at") VALUES ('Android4.4.Kitty', '123', '2025-07-06 18:12:53.152309', '2025-07-06 18:12:53.152309') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mDevice Load (0.2ms)[0m  [1m[34mSELECT "devices".* FROM "devices" /* loading for pp */ LIMIT 11 /*application='Backend'*/[0m
+Started GET "/" for ::1 at 2025-07-06 15:35:23 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.5ms | GC: 0.3ms)
+Completed 200 OK in 38ms (Views: 5.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/devices" for ::1 at 2025-07-06 15:35:40 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/devices"):
+  
+Started GET "/favicon.ico" for ::1 at 2025-07-06 15:35:40 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mCACHE ActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2025-07-06 15:52:32 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 8.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-07-06 15:52:56 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/carlos/.local/share/mise/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 5.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/devices" for ::1 at 2025-07-06 15:52:58 -0300
+Processing by DevicesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devices/index.html.erb within layouts/application
+  [1m[36mDevice Load (2.1ms)[0m  [1m[34mSELECT "devices".* FROM "devices" /*action='index',application='Backend',controller='devices'*/[0m
+  ↳ app/views/devices/index.html.erb:8
+  Rendered devices/_device.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered devices/index.html.erb within layouts/application (Duration: 51.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 85.6ms | GC: 0.0ms)
+Completed 200 OK in 166ms (Views: 86.2ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/assets/application-8b441ae0.css" for ::1 at 2025-07-06 15:52:58 -0300
+Started GET "/assets/application-bfcdf840.js" for ::1 at 2025-07-06 15:52:58 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for ::1 at 2025-07-06 15:52:58 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for ::1 at 2025-07-06 15:52:58 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-07-06 15:52:58 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for ::1 at 2025-07-06 15:52:59 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for ::1 at 2025-07-06 15:52:59 -0300
+Started GET "/assets/controllers/application-3affb389.js" for ::1 at 2025-07-06 15:52:59 -0300
+Started GET "/devices/json" for ::1 at 2025-07-06 15:53:36 -0300
+Processing by DevicesController#show as HTML
+  Parameters: {"id" => "json"}
+  [1m[36mDevice Load (5.2ms)[0m  [1m[34mSELECT "devices".* FROM "devices" WHERE "devices"."id" = NULL LIMIT 1 /*action='show',application='Backend',controller='devices'*/[0m
+  ↳ app/controllers/devices_controller.rb:63:in 'DevicesController#set_device'
+Completed 404 Not Found in 42ms (ActiveRecord: 5.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Device with 'id'=json):
+  
+app/controllers/devices_controller.rb:63:in 'DevicesController#set_device'
+Started GET "/devices.json" for ::1 at 2025-07-06 15:53:54 -0300
+Processing by DevicesController#index as JSON
+  Rendering devices/index.json.jbuilder
+  [1m[36mDevice Load (3.0ms)[0m  [1m[34mSELECT "devices".* FROM "devices" /*action='index',application='Backend',controller='devices'*/[0m
+  ↳ app/views/devices/index.json.jbuilder:1
+  Rendered collection of devices/_device.json.jbuilder [1 times] (Duration: 6.4ms | GC: 0.0ms)
+  Rendered devices/index.json.jbuilder (Duration: 36.7ms | GC: 1.3ms)
+Completed 200 OK in 59ms (Views: 42.5ms | ActiveRecord: 2.8ms (1 query, 0 cached) | GC: 1.3ms)
+
+

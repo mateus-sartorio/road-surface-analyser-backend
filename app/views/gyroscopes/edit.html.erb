@@ -1,0 +1,12 @@
+<% content_for :title, "Editing gyroscope" %>
+
+<h1>Editing gyroscope</h1>
+
+<%= render "form", gyroscope: @gyroscope %>
+
+<br>
+
+<div>
+  <%= link_to "Show this gyroscope", @gyroscope %> |
+  <%= link_to "Back to gyroscopes", gyroscopes_path %>
+</div>

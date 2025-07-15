@@ -66,49 +66,25 @@ class RecordsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def record_params
-    params.expect(record: [:travel_id,
-                           :timestamp_begin,
-                           :timestamp_end,
-                           { accelerometer_attributes: %i[x y z] }])
-    #  gyroscope: %i[x y z],
-    #  user_accelerometer: %i[x y z],
-    #  location: %i[latitude longitude altitude accuracy bearing speed timestamp
-    #               speedAccuracy bearingAccuracyDegrees verticalAccuracyMeters])
-    # params.require(:record).permit(
-    #   # Parâmetros simples no primeiro nível
-    #   :travel_id,
-    #   :timestamp_begin,
-    #   :timestamp_end,
-    #   # Para objetos aninhados, passamos um hash onde a chave é o nome do objeto
-    #   # e o valor é um array com os atributos permitidos dentro dele.
-    #   accelerometer: %i[x y z],
-    #   gyroscope: %i[x y z],
-    #   userAccelerometer: %i[x y z],
-    #   location: %i[
-    #     latitude
-    #     longitude
-    #     altitude
-    #     accuracy
-    #     bearing
-    #     speed
-    #     timestamp
-    #     speedAccuracy
-    #     bearingAccuracyDegrees
-    #     verticalAccuracyMeters
-    #   ]
-    # )
-    #
-    # params.require(:record).permit(
-    #   :travel_id,
-    #   :timestamp_begin,
-    #   :timestamp_end,
-    #   accelerometer: %i[x y z],
-    #   gyroscope: %i[x y z],
-    #   user_accelerometer: %i[x y z],
-    #   location: %i[
-    #     latitude longitude altitude accuracy bearing speed timestamp
-    #     speed_accuracy bearing_accuracy_degrees vertical_accuracy_meters
-    #   ]
-    # )
+    params.require(:record).permit(
+      :travel_id,
+      :timestamp_begin,
+      :timestamp_end,
+      accelerometer_attributes: %i[x y z],
+      gyroscope_attributes: %i[x y z],
+      user_accelerometer_attributes: %i[x y z],
+      location_attributes: %i[
+        latitude
+        longitude
+        altitude
+        accuracy
+        bearing
+        speed
+        timestamp
+        speedAccuracy
+        bearingAccuracyDegrees
+        verticalAccuracyMeters
+      ]
+    )
   end
 end

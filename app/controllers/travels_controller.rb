@@ -1,5 +1,5 @@
 class TravelsController < ApplicationController
-  before_action :set_travel, only: %i[ show edit update destroy ]
+  before_action :set_travel, only: %i[show edit update destroy]
 
   # GET /travels or /travels.json
   def index
@@ -25,7 +25,7 @@ class TravelsController < ApplicationController
 
     respond_to do |format|
       if @travel.save
-        format.html { redirect_to @travel, notice: "Travel was successfully created." }
+        format.html { redirect_to @travel, notice: 'Travel was successfully created.' }
         format.json { render :show, status: :created, location: @travel }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TravelsController < ApplicationController
   def update
     respond_to do |format|
       if @travel.update(travel_params)
-        format.html { redirect_to @travel, notice: "Travel was successfully updated." }
+        format.html { redirect_to @travel, notice: 'Travel was successfully updated.' }
         format.json { render :show, status: :ok, location: @travel }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,21 @@ class TravelsController < ApplicationController
     @travel.destroy!
 
     respond_to do |format|
-      format.html { redirect_to travels_path, status: :see_other, notice: "Travel was successfully destroyed." }
+      format.html { redirect_to travels_path, status: :see_other, notice: 'Travel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_travel
-      @travel = Travel.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def travel_params
-      params.expect(travel: [ :timestamp_begin, :timestamp_end ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_travel
+    @travel = Travel.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def travel_params
+    # params.require(:travel).permit(:device_id, :timestamp_begin, :timestamp_end)
+    params.expect(travel: %i[device_id timestamp_begin timestamp_end])
+  end
 end

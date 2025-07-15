@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: %i[ show edit update destroy ]
+  before_action :set_record, only: %i[show edit update destroy]
 
   # GET /records or /records.json
   def index
@@ -25,7 +25,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: "Record was successfully created." }
+        format.html { redirect_to @record, notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: "Record was successfully updated." }
+        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,63 @@ class RecordsController < ApplicationController
     @record.destroy!
 
     respond_to do |format|
-      format.html { redirect_to records_path, status: :see_other, notice: "Record was successfully destroyed." }
+      format.html { redirect_to records_path, status: :see_other, notice: 'Record was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_record
-      @record = Record.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def record_params
-      params.expect(record: [ :timestamp_begin, :timestamp_end ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_record
+    @record = Record.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def record_params
+    params.expect(record: [:travel_id,
+                           :timestamp_begin,
+                           :timestamp_end,
+                           { accelerometer_attributes: %i[x y z] }])
+    #  gyroscope: %i[x y z],
+    #  user_accelerometer: %i[x y z],
+    #  location: %i[latitude longitude altitude accuracy bearing speed timestamp
+    #               speedAccuracy bearingAccuracyDegrees verticalAccuracyMeters])
+    # params.require(:record).permit(
+    #   # Parâmetros simples no primeiro nível
+    #   :travel_id,
+    #   :timestamp_begin,
+    #   :timestamp_end,
+    #   # Para objetos aninhados, passamos um hash onde a chave é o nome do objeto
+    #   # e o valor é um array com os atributos permitidos dentro dele.
+    #   accelerometer: %i[x y z],
+    #   gyroscope: %i[x y z],
+    #   userAccelerometer: %i[x y z],
+    #   location: %i[
+    #     latitude
+    #     longitude
+    #     altitude
+    #     accuracy
+    #     bearing
+    #     speed
+    #     timestamp
+    #     speedAccuracy
+    #     bearingAccuracyDegrees
+    #     verticalAccuracyMeters
+    #   ]
+    # )
+    #
+    # params.require(:record).permit(
+    #   :travel_id,
+    #   :timestamp_begin,
+    #   :timestamp_end,
+    #   accelerometer: %i[x y z],
+    #   gyroscope: %i[x y z],
+    #   user_accelerometer: %i[x y z],
+    #   location: %i[
+    #     latitude longitude altitude accuracy bearing speed timestamp
+    #     speed_accuracy bearing_accuracy_degrees vertical_accuracy_meters
+    #   ]
+    # )
+  end
 end

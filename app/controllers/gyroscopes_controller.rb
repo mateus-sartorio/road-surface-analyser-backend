@@ -8,6 +8,7 @@ class GyroscopesController < ApplicationController
 
   # GET /gyroscopes/1 or /gyroscopes/1.json
   def show
+    render json: @gyroscope
   end
 
   # GET /gyroscopes/new

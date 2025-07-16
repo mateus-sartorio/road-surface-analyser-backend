@@ -9,6 +9,7 @@ class RecordsController < ApplicationController
 
   # GET /records/1 or /records/1.json
   def show
+    render json: @record.to_json(include: [:accelerometer, :user_accelerometer, :gyroscope, :location])
   end
 
   # GET /records/new

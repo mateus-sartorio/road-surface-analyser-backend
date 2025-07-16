@@ -8,6 +8,7 @@ class DevicesController < ApplicationController
 
   # GET /devices/1 or /devices/1.json
   def show
+    render json: @device
   end
 
   # GET /devices/new

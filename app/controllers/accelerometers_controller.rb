@@ -8,6 +8,7 @@ class AccelerometersController < ApplicationController
 
   # GET /accelerometers/1 or /accelerometers/1.json
   def show
+    render json: @accelerometer
   end
 
   # GET /accelerometers/new

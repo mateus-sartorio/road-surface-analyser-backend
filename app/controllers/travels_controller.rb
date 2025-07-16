@@ -8,6 +8,7 @@ class TravelsController < ApplicationController
 
   # GET /travels/1 or /travels/1.json
   def show
+    render json: @travel
   end
 
   # GET /travels/new

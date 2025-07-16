@@ -68,6 +68,14 @@ class RecordsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def record_params
-    params.expect(record: %i[travel_id timestamp_begin timestamp_end])
+    params.expect(record: [
+      :travel_id,
+      :timestamp_begin,
+      :timestamp_end,
+      { accelerometer_attributes: [:x, :y, :z] },
+      { gyroscope_attributes: [:x, :y, :z] },
+      { user_accelerometer_attributes: [:x, :y, :z] },
+      { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] }
+    ])
   end
 end

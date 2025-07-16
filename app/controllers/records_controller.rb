@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: %i[show edit update destroy]
+  protect_from_forgery with: :null_session
 
   # GET /records or /records.json
   def index
@@ -30,6 +31,7 @@ class RecordsController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @record.errors, status: :unprocessable_entity }
+        logger.debug "FAILED TO SAVE: #{@record.errors.full_messages}"
       end
     end
   end

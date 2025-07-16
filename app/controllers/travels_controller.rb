@@ -66,7 +66,6 @@ class TravelsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def travel_params
-    # params.require(:travel).permit(:device_id, :timestamp_begin, :timestamp_end)
     params.expect(travel: %i[device_id timestamp_begin timestamp_end])
   end
 end

@@ -2,21 +2,19 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres #username you provided when installing postgresql. By default its postgres(if you did not provide any)
-  password: postgres  #password you provided when installing postgresql
-  host: localhost      # 👈 force TCP instead of Unix socket
-  port: 5432           # 👈 optional, but good to be explicit
 
 development:
   <<: *default
   database: road_surface_analyzer_development  #name of your database
+  username: postgres #username you provided when installing postgresql. By default its postgres(if you did not provide any)
+  password: postgres  #password you provided when installing postgresql
 
 test:
   <<: *default
   database: road_surface_analyzer_test    #name of your database
+  username: postgres #username you provided when installing postgresql. By default its postgres(if you did not provide any)
+  password: postgres  #password you provided when installing postgresql
 
 production:
   <<: *default
-  database: road_surface_analyzer_production
-  username: postgres
-  password: <%= ENV["FRIENDLIST_DATABASE_PASSWORD"] %>
+  database: <%= ENV["DATABASE_URL"] %>

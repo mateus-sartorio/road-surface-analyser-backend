@@ -17,4 +17,6 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV["DATABASE_URL"] %>
+  database: app_production
+  username: app
+  password: <%= ENV["APP_DATABASE_PASSWORD"] %>

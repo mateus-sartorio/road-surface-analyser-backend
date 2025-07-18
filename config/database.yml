@@ -6,17 +6,11 @@ default: &default
 development:
   <<: *default
   database: road_surface_analyzer_development  #name of your database
-  username: postgres #username you provided when installing postgresql. By default its postgres(if you did not provide any)
-  password: postgres  #password you provided when installing postgresql
 
 test:
   <<: *default
   database: road_surface_analyzer_test    #name of your database
-  username: postgres #username you provided when installing postgresql. By default its postgres(if you did not provide any)
-  password: postgres  #password you provided when installing postgresql
 
 production:
   <<: *default
-  database: app_production
-  username: app
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  database: <%= ENV["DATABASE_URL"] %>

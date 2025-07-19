@@ -2,8 +2,6 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: localhost      # 👈 force TCP instead of Unix socket
-  port: 5432           # 👈 optional, but good to be explicit
 
 development:
   <<: *default
@@ -22,16 +20,16 @@ test:
 production:
   primary:
     <<: *default
-    database: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] %>
   cache:
     <<: *default
-    database: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    database: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    database: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] %>
     migrations_paths: db/cable_migrate

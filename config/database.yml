@@ -2,6 +2,8 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  host: localhost      # 👈 force TCP instead of Unix socket
+  port: 5432           # 👈 optional, but good to be explicit
 
 development:
   <<: *default

@@ -37,6 +37,41 @@ class RecordsController < ApplicationController
     end
   end
 
+  # POST /records/bulk_create
+  def bulk_create
+    @records = []
+    errors = []
+    
+    bulk_params[:records].each_with_index do |record_data, index|
+      record = Record.new(record_data)
+      
+      if record.save
+        @records << record
+      else
+        errors << { index: index, errors: record.errors.full_messages }
+      end
+    end
+    
+    respond_to do |format|
+      if errors.empty?
+        format.json { 
+          render json: {
+            message: "#{@records.count} records created successfully",
+            records: @records.as_json(include: [:accelerometer, :user_accelerometer, :gyroscope, :location])
+          }, status: :created 
+        }
+      else
+        format.json { 
+          render json: {
+            message: "Some records failed to create",
+            created_count: @records.count,
+            errors: errors
+          }, status: :unprocessable_entity 
+        }
+      end
+    end
+  end
+
   # PATCH/PUT /records/1 or /records/1.json
   def update
     respond_to do |format|
@@ -78,5 +113,19 @@ class RecordsController < ApplicationController
       { user_accelerometer_attributes: [:x, :y, :z] },
       { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] }
     ])
+  end
+
+  def bulk_params
+    params.require(:bulk_create).permit({
+      records: [
+        :travel_id,
+        :timestamp_begin,
+        :timestamp_end,
+        { accelerometer_attributes: [:x, :y, :z] },
+        { gyroscope_attributes: [:x, :y, :z] },
+        { user_accelerometer_attributes: [:x, :y, :z] },
+        { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] }
+      ]
+    })
   end
 end

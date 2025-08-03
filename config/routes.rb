@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :travels
   resources :records
+  resources :records do
+    collection do
+      post :bulk_create
+    end
+  end
   resources :devices
   resources :locations
   resources :user_accelerometers

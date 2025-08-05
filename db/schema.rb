@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_15_010204) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_04_234801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,6 +58,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_010204) do
     t.index ["record_id"], name: "index_locations_on_record_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "record_id"
+    t.index ["record_id"], name: "index_ratings_on_record_id"
+  end
+
   create_table "records", force: :cascade do |t|
     t.datetime "timestamp_begin"
     t.datetime "timestamp_end"
@@ -89,6 +97,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_010204) do
   add_foreign_key "accelerometers", "records"
   add_foreign_key "gyroscopes", "records"
   add_foreign_key "locations", "records"
+  add_foreign_key "ratings", "records"
   add_foreign_key "records", "travels"
   add_foreign_key "travels", "devices"
   add_foreign_key "user_accelerometers", "records"

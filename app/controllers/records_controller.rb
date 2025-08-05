@@ -44,6 +44,7 @@ class RecordsController < ApplicationController
     
     bulk_params[:records].each_with_index do |record_data, index|
       record = Record.new(record_data)
+      Rails.logger.debug record_data
       
       if record.save
         @records << record
@@ -111,7 +112,8 @@ class RecordsController < ApplicationController
       { accelerometer_attributes: [:x, :y, :z] },
       { gyroscope_attributes: [:x, :y, :z] },
       { user_accelerometer_attributes: [:x, :y, :z] },
-      { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] }
+      { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] },
+      { rating_attributes: [:value] }
     ])
   end
 
@@ -124,7 +126,8 @@ class RecordsController < ApplicationController
         { accelerometer_attributes: [:x, :y, :z] },
         { gyroscope_attributes: [:x, :y, :z] },
         { user_accelerometer_attributes: [:x, :y, :z] },
-        { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] }
+        { location_attributes: [:latitude, :longitude, :altitude, :accuracy, :bearing, :speed, :timestamp, :speedAccuracy, :bearingAccuracyDegrees, :verticalAccuracyMeters] },
+        { rating_attributes: [:value] }
       ]
     })
   end

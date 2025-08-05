@@ -44,7 +44,7 @@ class RecordsController < ApplicationController
     
     bulk_params[:records].each_with_index do |record_data, index|
       record = Record.new(record_data)
-      Rails.logger.debug record_data
+      
       
       if record.save
         @records << record

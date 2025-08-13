@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :ratings
-  resources :travels
+  resources :travels do
+    collection do
+      get :export_csv
+    end
+  end
   resources :records
   resources :records do
     collection do

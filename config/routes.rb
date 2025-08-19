@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :travels do
     collection do
       get :export_csv
+  get :map
     end
   end
   resources :records

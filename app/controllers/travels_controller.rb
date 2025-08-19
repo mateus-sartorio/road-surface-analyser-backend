@@ -60,6 +60,20 @@ class TravelsController < ApplicationController
     end
   end
 
+  # GET /travels/map
+  # Returns a static HTML file located in `public/map.html` (adjust filename as needed)
+  def static_page
+    file_path = Rails.root.join('public', 'map.html')
+
+    unless File.exist?(file_path)
+      render plain: 'Static file not found', status: :not_found
+      return
+    end
+
+    # Serve the file inline as HTML
+    send_file file_path, type: 'text/html', disposition: 'inline'
+  end
+
   # GET /travels/export_csv?travel_id=:id (opcional)
   def export_csv
     travel_id = params[:travel_id]
